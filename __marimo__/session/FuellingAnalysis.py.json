@@ -1,0 +1,64 @@
+{
+  "version": "1",
+  "metadata": {
+    "marimo_version": "0.18.3"
+  },
+  "cells": [
+    {
+      "id": "Hbol",
+      "code_hash": "aaae66badd5f9e49c9d52d59f32c3a6b",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h1 id=\"how-many-carbs\">How many carbs?</h1>\n<span class=\"paragraph\">This project explores the impact of fuelling strategies for professional and competitive cyclists. We begin by exploring the Basal Metabolic Rate (BMR), which is minimum number of calories your body burns at rest for basic functions like breathing, circulation and cell production. This sets a reference for considering the energy demands of high level endurance performance and the amount of energy consumed in the form of carbohydrates during the activity.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "MJUe",
+      "code_hash": "0f98b1b56b76d1d92cba7e63ae9004c1",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"basal-metabolic-rate-brm\">Basal Metabolic Rate (BRM)</h2>\n<span class=\"paragraph\">Even at rest, the body burns a certain amount of energy to maintain basic metabolism in order to stay alive. This is principally determined by the cells that make up Fat Free Mass, defined as Total Body Mass minus Total Body Fat. The term Lean Body Mass is often used interchangeably with Fat Free Mass, though the strict definition of Lean Body Mass excludes the skeleton, which is metabolically active, as bone is continually formed and resorbed.<br>\nSince the accurate measurement of BMR requires laboratory conditions, a number of formulae have been devised to estimate it. If you know your % body fat, you can use the <a href=\"https://books.google.co.uk/books/about/Exercise_Physiology.html?id=mwLsEAAAQBAJ&redir_esc=y\">Katch-McArdle Formula (1996)</a>, otherwise the <a href=\"https://www.sciencedirect.com/science/article/abs/pii/S0002916523166986?via%3Dihub\">Mifflin-St Jeor Equation (1990)</a> effectively estimates lean body mass from height, weight, age and sex.<br></span>\n<h3 id=\"mifflin-st-jeor-equation\">Mifflin-St Jeor Equation</h3>\n<span class=\"paragraph\">Men:<br>\n<marimo-tex class=\"arithmatex\">||(BMR = (10 \\times \\text{weight in kg}) + (6.25 \\times \\text{height in cm}) - (5 \\times \\text{age in years}) + 5||)</marimo-tex><br>\nWomen:<br>\n<marimo-tex class=\"arithmatex\">||(BMR = (10 \\times \\text{weight in kg}) + (6.25 \\times \\text{height in cm}) - (5 \\times \\text{age in years}) - 161||)</marimo-tex></span>\n<h3 id=\"katch-mcardle-formula-only-based-on-lean-body-mass\">Katch-McArdle Formula (only based on lean body mass)</h3>\n<span class=\"paragraph\">Men and Women:<br>\n<marimo-tex class=\"arithmatex\">||(BMR = 370 + (21.6 \\times \\text{LBM})||)</marimo-tex><br>\n<marimo-tex class=\"arithmatex\">||(\\text{LBM} = \\text{Weight in kg} \\times \\left(1 - \\frac{\\text{Body Fat \\%}}{100}\\right)||)</marimo-tex></span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "setup",
+      "code_hash": "237922e510a88456ec7c30de6282610e",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "vblA",
+      "code_hash": "1d0db38904205bec4d6f6f6a1f6cec3e",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "bkHC",
+      "code_hash": "0be92aba18bed71b44facbee87c8a54d",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "lEQa",
+      "code_hash": "b5b3da93989468c5a801446fb4f73f23",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "PKri",
+      "code_hash": "6bed3a71819ce17852b0af88d15b626b",
+      "outputs": [],
+      "console": []
+    }
+  ]
+}
