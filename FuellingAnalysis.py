@@ -147,7 +147,11 @@ def _(JOULES_TO_KCALS, age, body_fat, go, height, mo, sex, weight):
         ]
     )
     fig.update_layout(
-        title="BMR estimate comparison",
+        title=dict(text="BMR estimate comparison",
+                   x=0.5,
+                   xanchor="center",
+                   font=dict(size=15, family="Arial", color="#1f2937"),
+                  ),
         xaxis_title="Estimated BMR (kcal/day)",
         xaxis=dict(range=[0, 3000]),
         template="plotly_white",
@@ -196,7 +200,7 @@ def _():
 def _(mo):
     mo.md(r"""
     ## Watts occurring?
-    The mention of Watts usually catches the attention of any serious cyclists in the room. The speed at which a rider completes any route, from a lap of the local park to the Tour de France, comes down to the power that can be sustained from start to completion. This is often expressed in terms of a <a href="https://science4performance.com/2018/05/11/strava-power-curve/">Power Curve</a>, which plots the maximum power against time. A 2022 <a href="https://velo2max.com/wp-content/uploads/2024/08/ijspp-article-p701.pdf">study by Valenzuela</a> analysed the power files of 98 world tour and 46 professional tour male cyclists, analysing efforts up to 4 hours. The following charts show the results expressed in terms of absolute Watts and as Watts/kg versus time, using a log-log scale.
+    The mention of Watts usually catches the attention of any serious cyclists in the room. The speed at which a rider completes any route, from a lap of the local park to the Tour de France, comes down to the power that can be sustained from start to completion. This is often expressed in terms of a <a href="https://science4performance.com/2018/05/11/strava-power-curve/">Power Curve</a>, which plots the maximum power against time. A 2022 <a href="https://velo2max.com/wp-content/uploads/2024/08/ijspp-article-p701.pdf">study by Valenzuela</a> used the power files of 98 world tour and 46 professional tour male cyclists, analysing efforts up to 4 hours. The following charts show the results expressed in terms of absolute Watts and as Watts/kg versus time, using a log-log scale.
     """)
     return
 
@@ -270,13 +274,13 @@ def _(EFFICIENCY, JOULES_TO_KCALS, go, make_subplots, pd):
 
     # 2. Setup Plotly Subplots
     fig1 = make_subplots(
-        rows=1,
-        cols=2,
+        rows=2,
+        cols=1,
         subplot_titles=(
             "Absolute Power (W) vs Duration",
             "Relative Power (W/kg) vs Duration",
         ),
-        horizontal_spacing=0.08,
+        vertical_spacing=0.2,
     )
 
     colors = {
@@ -317,8 +321,8 @@ def _(EFFICIENCY, JOULES_TO_KCALS, go, make_subplots, pd):
                 marker=dict(size=6),
                 hovertemplate=f"<b>{p}</b><br>Duration: %{{x}}s<br>Relative Power: %{{y}} W/kg<extra></extra>",
             ),
-            row=1,
-            col=2,
+            row=2,
+            col=1,
         )
 
     # 3. Configure Logarithmic Axes & Custom Ticks
@@ -374,7 +378,7 @@ def _(mo):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    Consider the 50th percentile cyclist, who maintained 4.2 Watts/kg for 4 hours. He probably felt pretty hot, because muscles are only about 20% to 25% efficient at converting chemical energy into mechanical energy, with the rest wasted as heat. So he would have to burn about 19.1 Watts/kg to maintain the power displayed on his head unit, in addition to the 1.3 Watts/kg BMR. This is almost 16 times BMR. And that takes a lot of energy: 4,777 kcals. The tool below calcuates the energy required to sustain a certain number of Watts/kg for rides of different durations. Note that total energy demand includes both mechanical energy and Basal Metabolic Rate (because the cyclist has to stay alive while cycling!). We can also explore the effect of consuming carbohydrates while riding.
+    Consider the 50th percentile cyclist, who maintained 4.2 Watts/kg for 4 hours. He probably felt pretty hot, because muscles are only about 20% to 25% efficient at converting chemical energy into mechanical energy, with the rest wasted as heat. So he would have to burn about 19.1 Watts/kg to maintain the power displayed on his head unit, in addition to the 1.3 Watts/kg BMR. This is almost 16 times BMR. And that takes a lot of energy: 4777 kcals. The tool below calcuates the energy required to sustain a certain number of Watts/kg for rides of different durations. Note that total energy demand includes both mechanical energy and Basal Metabolic Rate (because the cyclist has to stay alive while cycling!). We can also explore the effect of consuming carbohydrates while riding.
     """)
     return
 
@@ -453,7 +457,12 @@ def _(
         )
     )
     fig3.update_layout(
-        title=f"Analysis for {weight2.value} kg rider at {w_kg.value} Watts/kg ({weight2.value*w_kg.value:.0f} Watts) for {duration.value}, fuelling at {fuelling.value} g of carbs per hour<br>Total energy demand (incl BMR): {energy_demand[-1]:.0f} kcals. Net energy demand with fuelling {with_fuelling[-1]:.0f} kcals",
+        title=dict(
+            text=f"<b>Analysis for {weight2.value} kg rider at {w_kg.value} Watts/kg ({weight2.value*w_kg.value:.0f} Watts) for {duration.value}, fuelling at {fuelling.value} g of carbs per hour<br>Total energy demand (incl BMR): {energy_demand[-1]:.0f} kcals. Net energy demand with fuelling {with_fuelling[-1]:.0f} kcals</b>",
+            x=0.5,
+            xanchor="center",
+            font=dict(size=15, family="Arial", color="#1f2937"),
+        ),
         xaxis_title="Time",
         yaxis_title="Energy expended kcals",
         xaxis=dict(
@@ -466,7 +475,7 @@ def _(
         template="plotly_white",
         margin=dict(t=40, b=20, l=20, r=20),
         height=400,
-        legend=dict(title="Series"),
+        legend=dict(title="Series", x=0.5, y=-0.2, xanchor="center", yanchor="top", orientation="h"),
     )
     return
 
@@ -495,7 +504,7 @@ def _():
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    It is also possible to convert carbs per hour into Watts. Every 100 g of carbohydrate produces 400 kcals, which is just over 1600 kJoules per hour or 464 joules per second. Given an efficiency of 22%, this converts to 102 Watts of mechanical power. Unfortunately this does not mean that a 200 Watts rider can suddenly match his friend who is riding at 300 Watts, but it does mean that, by fuelling with 100 g of carbs per hour the 300 Watts rider is depleting glycogen stores at the same rate as a non-fuelling 200 Watts rider.
+    It is also possible to convert carbs per hour into Watts. Every 100 g of carbohydrate produces 400 kcals, which is just over 1600 kJoules per hour or 464 joules per second. Given an efficiency of 22%, this converts to 102 Watts of mechanical power. Unfortunately this does not mean that a 200 Watts rider can suddenly match the power of a 300 Watts rider, but it does mean that, by fuelling with 100 g of carbs per hour the 300 Watts rider is depleting glycogen stores at the same rate as a non-fuelling 200 Watts rider.
     """)
     return
 
@@ -505,19 +514,6 @@ def _(mo):
     mo.md(r"""
     # Back to basics
     Bringing this back to Basal Metabolic Rate, average males tick over at about 1.1 Watts/kg and females about 1.0 Watts/kg. Due to energy lost in generating mechanical energy in muscles, riding a bike relatively slowly at 1.0 Watt/kg has a power demand of about 4.5 Watts/kg. <br>Although professional riders have a slightly more elevated BMR, they are able to sustain phenomenal power to weight ratios for long periods, burning energy are rates approaching 20 times BMR. A 68 kg rider consuming 100 g of carbs per hour is conusming about 4.5 times BMR. This allows the cyclist to conserve a significant amount of glycogen stores, reduces energy deficits and accelerates recover.
-    """)
-    return
-
-
-@app.cell
-def _():
-    return
-
-
-@app.cell(hide_code=True)
-def _(mo):
-    mo.md(r"""
-    Since power is work done per unit time, we can obtain the amount of energy expended over each duration.
     """)
     return
 
